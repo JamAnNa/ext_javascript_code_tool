@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Monaco Editor via CDN</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 20px;
+				font-family: sans-serif;
+			}
+			#container {
+				width: 100%;
+				height: 600px;
+				border: 1px solid #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Monaco Editor (JavaScript) via CDN</h2>
+		<div id="container"></div>
+
+		<!-- 引入 Monaco Editor 从 CDN -->
+		<script src="https://unpkg.com/monaco-editor@0.52.2/min/vs/loader.js"></script>
+		<script>
+			// 配置 AMD loader（Monaco 依赖）
+			window.MonacoEnvironment = {
+				getWorkerUrl: function (moduleId, label) {
+					// 内联 worker（避免跨域和路径问题）
+					if (label === 'json') {
+						return (
+							'data:text/javascript;charset=utf-8,' +
+							encodeURIComponent(`
+            self.MonacoEnvironment = { baseUrl: 'https://unpkg.com/monaco-editor@0.52.2/min/' };
+            importScripts('https://unpkg.com/monaco-editor@0.52.2/min/vs/base/worker/workerMain.js');
+          `)
+						);
+					}
+					return (
+						'data:text/javascript;charset=utf-8,' +
+						encodeURIComponent(`
+          self.MonacoEnvironment = { baseUrl: 'https://unpkg.com/monaco-editor@0.52.2/min/' };
+          importScripts('https://unpkg.com/monaco-editor@0.52.2/min/vs/base/worker/workerMain.js');
+        `)
+					);
+				},
+			};
+
+			// 加载 Monaco
+			require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@0.52.2/min/vs' } });
+
+			require(['vs/editor/editor.main'], function () {
+				const editor = monaco.editor.create(document.getElementById('container'), {
+					value: ['function hello() {', '  console.log("Hello from Monaco Editor!");', '}', '', 'hello();'].join('\n'),
+					language: 'javascript',
+					theme: 'vs', // 可选: 'vs-dark', 'hc-black'
+					automaticLayout: true,
+					minimap: { enabled: false },
+					fontSize: 14,
+					scrollBeyondLastLine: false,
+					tabSize: 2,
+					// 启用智能提示等
+					suggest: {
+						showKeywords: true,
+						showSnippets: true,
+					},
+				});
+
+				// 可选：监听内容变化
+				editor.onDidChangeModelContent(() => {
+					console.log('Current code:', editor.getValue());
+				});
+			});
+		</script>
+	</body>
+</html>

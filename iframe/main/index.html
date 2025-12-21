@@ -1,76 +1,149 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Monaco Editor via CDN</title>
+		<title>Ace Editor - EDA</title>
 		<style>
-			body {
+			* {
 				margin: 0;
-				padding: 20px;
-				font-family: sans-serif;
+				padding: 0;
+				box-sizing: border-box;
 			}
-			#container {
+
+			html,
+			body {
+				height: 100%;
+				overflow: hidden;
+				background: #272822; /* 与编辑器背景一致 */
+			}
+
+			#app {
+				display: flex;
+				height: 100vh;
+			}
+
+			/* 左侧可滚动侧边栏 */
+			#sidebar {
+				width: 120px;
+				background: #272822; /* Monokai 背景色 */
+				color: white;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding-top: 16px;
+				border-right: 1px solid #444;
+				overflow-y: auto; /* 允许垂直滚动 */
+				scrollbar-width: thin; /* Firefox */
+				scrollbar-color: #555 #272822;
+			}
+
+			/* 隐藏默认滚动条（可选美化） */
+			#sidebar::-webkit-scrollbar {
+				width: 6px;
+			}
+			#sidebar::-webkit-scrollbar-track {
+				background: #272822;
+			}
+			#sidebar::-webkit-scrollbar-thumb {
+				background: #555;
+				border-radius: 3px;
+			}
+
+			/* 列表项样式 */
+			#sidebar ul {
+				list-style: none;
 				width: 100%;
-				height: 600px;
-				border: 1px solid #ccc;
+				padding: 0;
+			}
+
+			#sidebar li {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				padding: 8px 0;
+			}
+
+			#sidebar button {
+				width: 80px;
+				height: 36px;
+				background: #272822; /* 与背景融合 */
+				color: white; /* 文字白色 */
+				border: 1px solid #666;
+				border-radius: 4px;
+				font-size: 14px;
+				cursor: pointer;
+				transition:
+					background 0.2s,
+					border-color 0.2s;
+			}
+
+			#sidebar button:hover {
+				background: #333430;
+				border-color: #888;
+			}
+
+			/* 右侧编辑器区域 */
+			#editor-container {
+				flex: 1;
+				height: 100%;
+			}
+
+			#editor {
+				height: 100%;
+				width: 100%;
 			}
 		</style>
 	</head>
 	<body>
-		<h2>Monaco Editor (JavaScript) via CDN</h2>
-		<div id="container"></div>
+		<div id="app">
+			<!-- 左侧可滚动侧边栏 -->
+			<div id="sidebar">
+				<ul>
+					<li><button id="run-btn">运行</button></li>
+					<!-- 后续可在此添加更多 <li><button>...</button></li> -->
+				</ul>
+			</div>
 
-		<!-- 引入 Monaco Editor 从 CDN -->
-		<script src="https://unpkg.com/monaco-editor@0.52.2/min/vs/loader.js"></script>
+			<!-- 右侧编辑器 -->
+			<div id="editor-container">
+				<div id="editor"></div>
+			</div>
+		</div>
+
+		<!-- Ace 资源（全静态加载） -->
+		<script src="/iframe/script/Ace_Editor/ace.js"></script>
+		<script src="/iframe/script/Ace_Editor/ext-language_tools.js"></script>
+		<script src="/iframe/script/Ace_Editor/mode-javascript.js"></script>
+		<script src="/iframe/script/Ace_Editor/theme-monokai.js"></script>
+
 		<script>
-			// 配置 AMD loader（Monaco 依赖）
-			window.MonacoEnvironment = {
-				getWorkerUrl: function (moduleId, label) {
-					// 内联 worker（避免跨域和路径问题）
-					if (label === 'json') {
-						return (
-							'data:text/javascript;charset=utf-8,' +
-							encodeURIComponent(`
-            self.MonacoEnvironment = { baseUrl: 'https://unpkg.com/monaco-editor@0.52.2/min/' };
-            importScripts('https://unpkg.com/monaco-editor@0.52.2/min/vs/base/worker/workerMain.js');
-          `)
-						);
-					}
-					return (
-						'data:text/javascript;charset=utf-8,' +
-						encodeURIComponent(`
-          self.MonacoEnvironment = { baseUrl: 'https://unpkg.com/monaco-editor@0.52.2/min/' };
-          importScripts('https://unpkg.com/monaco-editor@0.52.2/min/vs/base/worker/workerMain.js');
-        `)
-					);
-				},
-			};
+			// 初始化 Ace 编辑器（空内容）
+			const editor = ace.edit('editor');
+			editor.session.setMode('ace/mode/javascript');
+			editor.setTheme('ace/theme/monokai');
+			editor.setValue('', -1); // 清空内容，光标置于开头
+			editor.setOptions({
+				enableBasicAutocompletion: true,
+				enableLiveAutocompletion: true,
+				fontSize: 14,
+				useWorker: false,
+				highlightActiveLine: true,
+				showPrintMargin: false,
+			});
 
-			// 加载 Monaco
-			require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@0.52.2/min/vs' } });
+			// 绑定“运行”按钮
+			document.getElementById('run-btn').addEventListener('click', () => {
+				const code = editor.getValue().trim();
+				if (!code) {
+					console.log('编辑器为空，未执行任何代码。');
+					return;
+				}
 
-			require(['vs/editor/editor.main'], function () {
-				const editor = monaco.editor.create(document.getElementById('container'), {
-					value: ['function hello() {', '  console.log("Hello from Monaco Editor!");', '}', '', 'hello();'].join('\n'),
-					language: 'javascript',
-					theme: 'vs', // 可选: 'vs-dark', 'hc-black'
-					automaticLayout: true,
-					minimap: { enabled: false },
-					fontSize: 14,
-					scrollBeyondLastLine: false,
-					tabSize: 2,
-					// 启用智能提示等
-					suggest: {
-						showKeywords: true,
-						showSnippets: true,
-					},
-				});
-
-				// 可选：监听内容变化
-				editor.onDidChangeModelContent(() => {
-					console.log('Current code:', editor.getValue());
-				});
+				try {
+					eval(code);
+				} catch (error) {
+					console.error('❌ 执行出错:', error);
+				}
 			});
 		</script>
 	</body>

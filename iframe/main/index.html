@@ -30,34 +30,33 @@
 		<script src="/iframe/script/eda_coder/eda_all_method.js"></script>
 
 		<script>
-			// // 初始化 Ace 编辑器（空内容）
-			// const editor = ace.edit('editor');
-			// editor.session.setMode('ace/mode/javascript');
-			// editor.setTheme('ace/theme/monokai');
-			// editor.setValue('', -1); // 清空内容，光标置于开头
-			// editor.setOptions({
-			// 	enableBasicAutocompletion: true,	//自动弹出
-			// 	enableLiveAutocompletion: true,
-			// 	fontSize: 14,
-			// 	useWorker: false,
-			// 	highlightActiveLine: true,
-			// 	showPrintMargin: false,
-			// });
-
-			editor.completers.push({
-				getCompletions: function (editor, session, pos, prefix, callback) {
-					var completions = [
-						{
-							name: 'myFunction',
-							value: 'myFunction',
-							score: 1000,
-							meta: 'custom',
-							docText: '测试补全',
-						},
-					];
-					callback(null, completions);
-				},
+			// 初始化 Ace 编辑器（空内容）
+			const editor = ace.edit('editor');
+			editor.session.setMode('ace/mode/javascript');
+			editor.setTheme('ace/theme/monokai');
+			editor.setValue('', -1); // 清空内容，光标置于开头
+			editor.setOptions({
+				enableBasicAutocompletion: true, //自动弹出
+				enableLiveAutocompletion: true,
+				fontSize: 14,
+				useWorker: false,
+				highlightActiveLine: true,
+				showPrintMargin: false,
 			});
+
+			// editor.completers.push({
+			// 	getCompletions: function(editor, session, pos, prefix, callback) {
+			// 		var completions = [{
+			// 				name: 'myFunction',
+			// 				value: 'myFunction',
+			// 				score: 1000,
+			// 				meta: 'custom',
+			// 				docText: '测试补全',
+			// 			},
+			// 		];
+			// 		callback(null, completions);
+			// 	}
+			// });
 
 			// 绑定“运行”按钮
 			document.getElementById('run-btn').addEventListener('click', () => {

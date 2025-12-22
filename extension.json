@@ -1,6 +1,6 @@
 {
 	"name": "pro-api-sdk",
-	"uuid": "",
+	"uuid": "7ca98ae04b7142599ab107e34acc8e5e",
 	"displayName": "PRO API SDK",
 	"description": "嘉立创EDA & EasyEDA 专业版扩展 API 开发工具",
 	"version": "1.0.0",
@@ -30,6 +30,11 @@
 				"title": "API SDK",
 				"menuItems": [
 					{
+						"id": "Open Script Tool",
+						"title": "Open Script Tool",
+						"registerFn": "openScriptTool"
+					},
+					{
 						"id": "About",
 						"title": "About...",
 						"registerFn": "about"
@@ -43,6 +48,11 @@
 				"title": "API SDK",
 				"menuItems": [
 					{
+						"id": "Open Script Tool",
+						"title": "Open Script Tool",
+						"registerFn": "openScriptTool"
+					},
+					{
 						"id": "About",
 						"title": "About...",
 						"registerFn": "about"
@@ -55,6 +65,11 @@
 				"id": "API SDK",
 				"title": "API SDK",
 				"menuItems": [
+					{
+						"id": "Open Script Tool",
+						"title": "Open Script Tool",
+						"registerFn": "openScriptTool"
+					},
 					{
 						"id": "About",
 						"title": "About...",

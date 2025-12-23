@@ -111,7 +111,9 @@
 					if (prefix === '') {
 						return callback(null, []);
 					}
-					const matches = completers.filter((item) => item.caption.toLowerCase().includes(prefix.toLowerCase()));
+					// 仅当前缀严格匹配（开头匹配）时才补全
+					const normalizedPrefix = prefix.toLowerCase();
+					const matches = completers.filter((item) => item.caption.toLowerCase().startsWith(normalizedPrefix));
 					callback(null, matches);
 				},
 			});
@@ -129,6 +131,66 @@
 					console.error('❌ 执行出错:', error);
 				}
 			});
+
+			// ========================
+			// 字体缩放 + 右下角提示
+			// ========================
+
+			let currentFontSize = 14; // 初始字号，与 setOptions 中一致
+			const minFontSize = 8;
+			const maxFontSize = 32;
+			const fontSizeStep = 2;
+
+			// 创建右下角提示元素
+			const zoomIndicator = document.createElement('div');
+			zoomIndicator.style.position = 'fixed';
+			zoomIndicator.style.bottom = '10px';
+			zoomIndicator.style.right = '10px';
+			zoomIndicator.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+			zoomIndicator.style.color = '#fff';
+			zoomIndicator.style.padding = '4px 8px';
+			zoomIndicator.style.borderRadius = '4px';
+			zoomIndicator.style.fontSize = '12px';
+			zoomIndicator.style.zIndex = '9999';
+			zoomIndicator.style.display = 'none'; // 初始隐藏
+			document.body.appendChild(zoomIndicator);
+
+			// 更新提示文本和编辑器字号
+			function updateZoomIndicator() {
+				const percent = Math.round((currentFontSize / 14) * 100);
+				zoomIndicator.textContent = `${percent}%`;
+				zoomIndicator.style.display = 'block';
+
+				// 更新 Ace 编辑器字体
+				editor.setFontSize(currentFontSize);
+
+				// 3秒后自动隐藏
+				clearTimeout(window._zoomHideTimer);
+				window._zoomHideTimer = setTimeout(() => {
+					zoomIndicator.style.display = 'none';
+				}, 3000);
+			}
+
+			// 监听 Ctrl + 鼠标滚轮
+			editor.container.addEventListener(
+				'wheel',
+				(e) => {
+					if (e.ctrlKey) {
+						e.preventDefault(); // 阻止浏览器默认缩放
+						if (e.deltaY < 0) {
+							if (currentFontSize < maxFontSize) {
+								currentFontSize += fontSizeStep;
+							}
+						} else if (e.deltaY > 0) {
+							if (currentFontSize > minFontSize) {
+								currentFontSize -= fontSizeStep;
+							}
+						}
+						updateZoomIndicator();
+					}
+				},
+				{ passive: false },
+			); // passive: false 是为了能调用 preventDefault()
 		</script>
 	</body>
 </html>

@@ -5091,4 +5091,16 @@ edcode = [
 		'methodPath': 'eda.sys_Window.getUrlAnchor',
 		'description': '获取 URL 锚点',
 	},
+	{
+		'methodPath': 'console.log',
+		'description': '输出',
+	},
+	{
+		'methodPath': 'async function main',
+		'description': '异步方法',
+	},
+	{
+		'methodPath': 'function main',
+		'description': '同步方法',
+	},
 ];

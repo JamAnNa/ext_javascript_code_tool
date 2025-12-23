@@ -1,5 +1,5 @@
 fullcode = {
-	'DMT_Board': [
+	'dmt_Board': [
 		{
 			'name': 'createBoard',
 			'params': '(schematicUuid?: string, pcbUuid?: string)',
@@ -24,21 +24,21 @@ fullcode = {
 		{
 			'name': 'getBoardInfo',
 			'params': '(boardName: string)',
-			'returnType': 'Promise<IDMT_BoardItem | undefined>',
+			'returnType': 'Promise<Idmt_BoardItem | undefined>',
 			'description': '获取板子的详细属性',
 			'snippet': 'getBoardInfo(${1:boardName})',
 		},
 		{
 			'name': 'getAllBoardsInfo',
 			'params': '()',
-			'returnType': 'Promise<Array<IDMT_BoardItem>>',
+			'returnType': 'Promise<Array<Idmt_BoardItem>>',
 			'description': '获取工程内所有板子的详细属性',
 			'snippet': 'getAllBoardsInfo()',
 		},
 		{
 			'name': 'getCurrentBoardInfo',
 			'params': '()',
-			'returnType': 'Promise<IDMT_BoardItem | undefined>',
+			'returnType': 'Promise<Idmt_BoardItem | undefined>',
 			'description': '获取当前板子的详细属性',
 			'snippet': 'getCurrentBoardInfo()',
 		},
@@ -50,7 +50,7 @@ fullcode = {
 			'snippet': 'deleteBoard(${1:boardName})',
 		},
 	],
-	'DMT_EditorControl': [
+	'dmt_EditorControl': [
 		{
 			'name': 'openDocument',
 			'params': '(documentUuid: string, splitScreenId?: string)',
@@ -79,7 +79,7 @@ fullcode = {
 		{
 			'name': 'getSplitScreenTree',
 			'params': '()',
-			'returnType': 'Promise<IDMT_EditorSplitScreenItem | undefined>',
+			'returnType': 'Promise<Idmt_EditorSplitScreenItem | undefined>',
 			'description': '获取编辑器分屏属性树',
 			'snippet': 'getSplitScreenTree()',
 		},
@@ -93,13 +93,13 @@ fullcode = {
 		{
 			'name': 'getTabsBySplitScreenId',
 			'params': '(splitScreenId: string)',
-			'returnType': 'Promise<Array<IDMT_EditorTabItem>>',
+			'returnType': 'Promise<Array<Idmt_EditorTabItem>>',
 			'description': '获取指定分屏 ID 下的所有标签页',
 			'snippet': 'getTabsBySplitScreenId(${1:splitScreenId})',
 		},
 		{
 			'name': 'createSplitScreen',
-			'params': '(splitScreenType: EDMT_EditorSplitScreenDirection, tabId: string)',
+			'params': '(splitScreenType: Edmt_EditorSplitScreenDirection, tabId: string)',
 			'returnType': 'Promise<{\r\n        sourceSplitScreenId: string;\r\n        newSplitScreenId: string;\r\n    } | undefined>',
 			'description': '创建分屏',
 			'snippet': 'createSplitScreen(${1:splitScreenType}, ${2:tabId})',
@@ -180,7 +180,7 @@ fullcode = {
 		{
 			'name': 'generateIndicatorMarkers',
 			'params':
-				'(markers: Array<IDMT_IndicatorMarkerShape>, color?: {\r\n        r: number;\r\n        g: number;\r\n        b: number;\r\n        alpha: number;\r\n    }, lineWidth?: number, zoom?: boolean, tabId?: string)',
+				'(markers: Array<Idmt_IndicatorMarkerShape>, color?: {\r\n        r: number;\r\n        g: number;\r\n        b: number;\r\n        alpha: number;\r\n    }, lineWidth?: number, zoom?: boolean, tabId?: string)',
 			'returnType': 'Promise<boolean>',
 			'description': '生成指示标记',
 			'snippet': 'generateIndicatorMarkers(${1:markers}, ${2:color}, ${3:lineWidth}, ${4:zoom}, ${5:tabId})',
@@ -193,7 +193,7 @@ fullcode = {
 			'snippet': 'removeIndicatorMarkers(${1:tabId})',
 		},
 	],
-	'DMT_Folder': [
+	'dmt_Folder': [
 		{
 			'name': 'createFolder',
 			'params': '(folderName: string, teamUuid: string, parentFolderUuid?: string, description?: string)',
@@ -232,7 +232,7 @@ fullcode = {
 		{
 			'name': 'getFolderInfo',
 			'params': '(teamUuid: string, folderUuid: string)',
-			'returnType': 'Promise<IDMT_FolderItem | undefined>',
+			'returnType': 'Promise<Idmt_FolderItem | undefined>',
 			'description': '获取文件夹详细属性',
 			'snippet': 'getFolderInfo(${1:teamUuid}, ${2:folderUuid})',
 		},
@@ -244,7 +244,7 @@ fullcode = {
 			'snippet': 'deleteFolder(${1:teamUuid}, ${2:folderUuid})',
 		},
 	],
-	'DMT_Panel': [
+	'dmt_Panel': [
 		{
 			'name': 'createPanel',
 			'params': '()',
@@ -269,21 +269,21 @@ fullcode = {
 		{
 			'name': 'getPanelInfo',
 			'params': '(panelUuid: string)',
-			'returnType': 'Promise<IDMT_PanelItem | undefined>',
+			'returnType': 'Promise<Idmt_PanelItem | undefined>',
 			'description': '获取面板的详细属性',
 			'snippet': 'getPanelInfo(${1:panelUuid})',
 		},
 		{
 			'name': 'getAllPanelsInfo',
 			'params': '()',
-			'returnType': 'Promise<Array<IDMT_PanelItem>>',
+			'returnType': 'Promise<Array<Idmt_PanelItem>>',
 			'description': '获取工程内所有面板的详细属性',
 			'snippet': 'getAllPanelsInfo()',
 		},
 		{
 			'name': 'getCurrentPanelInfo',
 			'params': '()',
-			'returnType': 'Promise<IDMT_PanelItem | undefined>',
+			'returnType': 'Promise<Idmt_PanelItem | undefined>',
 			'description': '获取当前面板的详细属性',
 			'snippet': 'getCurrentPanelInfo()',
 		},
@@ -295,7 +295,7 @@ fullcode = {
 			'snippet': 'deletePanel(${1:panelUuid})',
 		},
 	],
-	'DMT_Pcb': [
+	'dmt_Pcb': [
 		{
 			'name': 'createPcb',
 			'params': '(boardName?: string)',
@@ -320,21 +320,21 @@ fullcode = {
 		{
 			'name': 'getPcbInfo',
 			'params': '(pcbUuid: string)',
-			'returnType': 'Promise<IDMT_PcbItem | undefined>',
+			'returnType': 'Promise<Idmt_PcbItem | undefined>',
 			'description': '获取 PCB 的详细属性',
 			'snippet': 'getPcbInfo(${1:pcbUuid})',
 		},
 		{
 			'name': 'getAllPcbsInfo',
 			'params': '()',
-			'returnType': 'Promise<Array<IDMT_PcbItem>>',
+			'returnType': 'Promise<Array<Idmt_PcbItem>>',
 			'description': '获取工程内所有 PCB 的详细属性',
 			'snippet': 'getAllPcbsInfo()',
 		},
 		{
 			'name': 'getCurrentPcbInfo',
 			'params': '()',
-			'returnType': 'Promise<IDMT_PcbItem | undefined>',
+			'returnType': 'Promise<Idmt_PcbItem | undefined>',
 			'description': '获取当前 PCB 的详细属性',
 			'snippet': 'getCurrentPcbInfo()',
 		},
@@ -346,7 +346,7 @@ fullcode = {
 			'snippet': 'deletePcb(${1:pcbUuid})',
 		},
 	],
-	'DMT_Project': [
+	'dmt_Project': [
 		{
 			'name': 'openProject',
 			'params': '(projectUuid: string)',
@@ -357,7 +357,7 @@ fullcode = {
 		{
 			'name': 'createProject',
 			'params':
-				'(projectFriendlyName: string, projectName?: string, teamUuid?: string, folderUuid?: string, description?: string, collaborationMode?: EDMT_ProjectCollaborationMode)',
+				'(projectFriendlyName: string, projectName?: string, teamUuid?: string, folderUuid?: string, description?: string, collaborationMode?: Edmt_ProjectCollaborationMode)',
 			'returnType': 'Promise<string | undefined>',
 			'description': '创建工程',
 			'snippet':
@@ -380,19 +380,19 @@ fullcode = {
 		{
 			'name': 'getProjectInfo',
 			'params': '(projectUuid: string)',
-			'returnType': 'Promise<IDMT_BriefProjectItem | undefined>',
+			'returnType': 'Promise<Idmt_BriefProjectItem | undefined>',
 			'description': '获取工程属性',
 			'snippet': 'getProjectInfo(${1:projectUuid})',
 		},
 		{
 			'name': 'getCurrentProjectInfo',
 			'params': '()',
-			'returnType': 'Promise<IDMT_ProjectItem | undefined>',
+			'returnType': 'Promise<Idmt_ProjectItem | undefined>',
 			'description': '获取当前工程的详细属性',
 			'snippet': 'getCurrentProjectInfo()',
 		},
 	],
-	'DMT_Schematic': [
+	'dmt_Schematic': [
 		{
 			'name': 'createSchematic',
 			'params': '(boardName?: string)',
@@ -446,55 +446,55 @@ fullcode = {
 		{
 			'name': 'getSchematicInfo',
 			'params': '(schematicUuid: string)',
-			'returnType': 'Promise<IDMT_SchematicItem | undefined>',
+			'returnType': 'Promise<Idmt_SchematicItem | undefined>',
 			'description': '获取原理图的详细属性',
 			'snippet': 'getSchematicInfo(${1:schematicUuid})',
 		},
 		{
 			'name': 'getSchematicPageInfo',
 			'params': '(schematicPageUuid: string)',
-			'returnType': 'Promise<IDMT_SchematicPageItem | undefined>',
+			'returnType': 'Promise<Idmt_SchematicPageItem | undefined>',
 			'description': '获取原理图图页的详细属性',
 			'snippet': 'getSchematicPageInfo(${1:schematicPageUuid})',
 		},
 		{
 			'name': 'getAllSchematicsInfo',
 			'params': '()',
-			'returnType': 'Promise<Array<IDMT_SchematicItem>>',
+			'returnType': 'Promise<Array<Idmt_SchematicItem>>',
 			'description': '获取工程内所有原理图的详细属性',
 			'snippet': 'getAllSchematicsInfo()',
 		},
 		{
 			'name': 'getAllSchematicPagesInfo',
 			'params': '()',
-			'returnType': 'Promise<Array<IDMT_SchematicPageItem>>',
+			'returnType': 'Promise<Array<Idmt_SchematicPageItem>>',
 			'description': '获取工程内所有原理图图页的详细属性',
 			'snippet': 'getAllSchematicPagesInfo()',
 		},
 		{
 			'name': 'getCurrentSchematicAllSchematicPagesInfo',
 			'params': '()',
-			'returnType': 'Promise<Array<IDMT_SchematicPageItem>>',
+			'returnType': 'Promise<Array<Idmt_SchematicPageItem>>',
 			'description': '获取当前原理图内所有原理图图页的详细属性',
 			'snippet': 'getCurrentSchematicAllSchematicPagesInfo()',
 		},
 		{
 			'name': 'getCurrentSchematicInfo',
 			'params': '()',
-			'returnType': 'Promise<IDMT_SchematicItem | undefined>',
+			'returnType': 'Promise<Idmt_SchematicItem | undefined>',
 			'description': '获取当前原理图的详细属性',
 			'snippet': 'getCurrentSchematicInfo()',
 		},
 		{
 			'name': 'getCurrentSchematicPageInfo',
 			'params': '()',
-			'returnType': 'Promise<IDMT_SchematicPageItem | undefined>',
+			'returnType': 'Promise<Idmt_SchematicPageItem | undefined>',
 			'description': '获取当前原理图图页的详细属性',
 			'snippet': 'getCurrentSchematicPageInfo()',
 		},
 		{
 			'name': 'reorderSchematicPages',
-			'params': '(schematicUuid: string, schematicPageItemsArray: Array<IDMT_SchematicPageItem>)',
+			'params': '(schematicUuid: string, schematicPageItemsArray: Array<Idmt_SchematicPageItem>)',
 			'returnType': 'Promise<boolean>',
 			'description': '重新排序原理图图页',
 			'snippet': 'reorderSchematicPages(${1:schematicUuid}, ${2:schematicPageItemsArray})',
@@ -514,43 +514,43 @@ fullcode = {
 			'snippet': 'deleteSchematicPage(${1:schematicPageUuid})',
 		},
 	],
-	'DMT_SelectControl': [
+	'dmt_SelectControl': [
 		{
 			'name': 'getCurrentDocumentInfo',
 			'params': '()',
-			'returnType': 'Promise<IDMT_EditorDocumentItem | undefined>',
+			'returnType': 'Promise<Idmt_EditorDocumentItem | undefined>',
 			'description': '获取当前文档的属性',
 			'snippet': 'getCurrentDocumentInfo()',
 		},
 	],
-	'DMT_Team': [
+	'dmt_Team': [
 		{
 			'name': 'getAllTeamsInfo',
 			'params': '()',
-			'returnType': 'Promise<Array<IDMT_TeamItem>>',
+			'returnType': 'Promise<Array<Idmt_TeamItem>>',
 			'description': '获取所有直接团队的详细属性',
 			'snippet': 'getAllTeamsInfo()',
 		},
 		{
 			'name': 'getAllInvolvedTeamInfo',
 			'params': '()',
-			'returnType': 'Promise<Array<IDMT_TeamItem>>',
+			'returnType': 'Promise<Array<Idmt_TeamItem>>',
 			'description': '获取所有参与的团队的详细属性',
 			'snippet': 'getAllInvolvedTeamInfo()',
 		},
 		{
 			'name': 'getCurrentTeamInfo',
 			'params': '()',
-			'returnType': 'Promise<IDMT_TeamItem | undefined>',
+			'returnType': 'Promise<Idmt_TeamItem | undefined>',
 			'description': '获取当前团队的详细属性',
 			'snippet': 'getCurrentTeamInfo()',
 		},
 	],
-	'DMT_Workspace': [
+	'dmt_Workspace': [
 		{
 			'name': 'getAllWorkspacesInfo',
 			'params': '()',
-			'returnType': 'Promise<Array<IDMT_WorkspaceItem>>',
+			'returnType': 'Promise<Array<Idmt_WorkspaceItem>>',
 			'description': '获取所有工作区的详细属性',
 			'snippet': 'getAllWorkspacesInfo()',
 		},
@@ -564,7 +564,7 @@ fullcode = {
 		{
 			'name': 'getCurrentWorkspaceInfo',
 			'params': '()',
-			'returnType': 'Promise<IDMT_WorkspaceItem | undefined>',
+			'returnType': 'Promise<Idmt_WorkspaceItem | undefined>',
 			'description': '获取当前工作区的详细属性',
 			'snippet': 'getCurrentWorkspaceInfo()',
 		},
@@ -8469,16 +8469,16 @@ fullcode = {
 		{
 			'name': 'importProjectByProjectFile',
 			'params':
-				"(projectFile: File, fileType?: 'JLCEDA' | 'JLCEDA Pro' | 'EasyEDA' | 'EasyEDA Pro' | 'Allegro' | 'OrCAD' | 'EAGLE' | 'KiCad' | 'PADS' | 'LTspice', props?: {\r\n        importOption?: ESYS_ImportProjectImportOption;\r\n        schematicObjectStyle?: ESYS_ImportProjectSchematicObjectStyle;\r\n        associateFootprint?: boolean;\r\n        associate3DModel?: boolean;\r\n        importFootprintNotesLayer?: boolean;\r\n    }, saveTo?: {\r\n        operation: 'New Project';\r\n        newProjectOwnerTeamUuid: IDMT_TeamItem['uuid'];\r\n        newProjectOwnerFolderUuid?: IDMT_FolderItem['uuid'];\r\n        newProjectName?: string;\r\n        newProjectFriendlyName?: string;\r\n        newProjectDescription?: string;\r\n        newProjectCollaborationMode?: EDMT_ProjectCollaborationMode;\r\n    } | {\r\n        operation: 'Existing Project';\r\n        existingProjectUuid: IDMT_BriefProjectItem['uuid'];\r\n    }, librariesImportSetting?: {\r\n        ownerTeamUuid: IDMT_TeamItem['uuid'];\r\n        createDeviceForSingleSymbol?: boolean;\r\n    })",
-			'returnType': 'Promise<IDMT_BriefProjectItem | undefined>',
+				"(projectFile: File, fileType?: 'JLCEDA' | 'JLCEDA Pro' | 'EasyEDA' | 'EasyEDA Pro' | 'Allegro' | 'OrCAD' | 'EAGLE' | 'KiCad' | 'PADS' | 'LTspice', props?: {\r\n        importOption?: ESYS_ImportProjectImportOption;\r\n        schematicObjectStyle?: ESYS_ImportProjectSchematicObjectStyle;\r\n        associateFootprint?: boolean;\r\n        associate3DModel?: boolean;\r\n        importFootprintNotesLayer?: boolean;\r\n    }, saveTo?: {\r\n        operation: 'New Project';\r\n        newProjectOwnerTeamUuid: Idmt_TeamItem['uuid'];\r\n        newProjectOwnerFolderUuid?: Idmt_FolderItem['uuid'];\r\n        newProjectName?: string;\r\n        newProjectFriendlyName?: string;\r\n        newProjectDescription?: string;\r\n        newProjectCollaborationMode?: Edmt_ProjectCollaborationMode;\r\n    } | {\r\n        operation: 'Existing Project';\r\n        existingProjectUuid: Idmt_BriefProjectItem['uuid'];\r\n    }, librariesImportSetting?: {\r\n        ownerTeamUuid: Idmt_TeamItem['uuid'];\r\n        createDeviceForSingleSymbol?: boolean;\r\n    })",
+			'returnType': 'Promise<Idmt_BriefProjectItem | undefined>',
 			'description': '使用工程文件导入工程',
 			'snippet': 'importProjectByProjectFile(${1:projectFile}, ${2:fileType}, ${3:props}, ${4:saveTo}, ${5:librariesImportSetting})',
 		},
 		{
 			'name': 'importProjectByProjectFile',
 			'params':
-				"(projectFile: File, fileType?: 'Altium Designer' | 'Protel', props?: {\r\n        importOption?: ESYS_ImportProjectImportOption;\r\n        viaSolderMaskExpansion?: ESYS_ImportProjectViaSolderMaskExpansion;\r\n        boardOutlineSource?: ESYS_ImportProjectBoardOutlineSource;\r\n        schematicObjectStyle?: ESYS_ImportProjectSchematicObjectStyle;\r\n        associateFootprint?: boolean;\r\n        associate3DModel?: boolean;\r\n        importFootprintNotesLayer?: boolean;\r\n    }, saveTo?: {\r\n        operation: 'New Project';\r\n        newProjectOwnerTeamUuid: IDMT_TeamItem['uuid'];\r\n        newProjectOwnerFolderUuid?: IDMT_FolderItem['uuid'];\r\n        newProjectName?: string;\r\n        newProjectFriendlyName?: string;\r\n        newProjectDescription?: string;\r\n        newProjectCollaborationMode?: EDMT_ProjectCollaborationMode;\r\n    } | {\r\n        operation: 'Existing Project';\r\n        existingProjectUuid: IDMT_BriefProjectItem['uuid'];\r\n    }, librariesImportSetting?: {\r\n        ownerTeamUuid: IDMT_TeamItem['uuid'];\r\n        createDeviceForSingleSymbol?: boolean;\r\n    })",
-			'returnType': 'Promise<IDMT_BriefProjectItem | undefined>',
+				"(projectFile: File, fileType?: 'Altium Designer' | 'Protel', props?: {\r\n        importOption?: ESYS_ImportProjectImportOption;\r\n        viaSolderMaskExpansion?: ESYS_ImportProjectViaSolderMaskExpansion;\r\n        boardOutlineSource?: ESYS_ImportProjectBoardOutlineSource;\r\n        schematicObjectStyle?: ESYS_ImportProjectSchematicObjectStyle;\r\n        associateFootprint?: boolean;\r\n        associate3DModel?: boolean;\r\n        importFootprintNotesLayer?: boolean;\r\n    }, saveTo?: {\r\n        operation: 'New Project';\r\n        newProjectOwnerTeamUuid: Idmt_TeamItem['uuid'];\r\n        newProjectOwnerFolderUuid?: Idmt_FolderItem['uuid'];\r\n        newProjectName?: string;\r\n        newProjectFriendlyName?: string;\r\n        newProjectDescription?: string;\r\n        newProjectCollaborationMode?: Edmt_ProjectCollaborationMode;\r\n    } | {\r\n        operation: 'Existing Project';\r\n        existingProjectUuid: Idmt_BriefProjectItem['uuid'];\r\n    }, librariesImportSetting?: {\r\n        ownerTeamUuid: Idmt_TeamItem['uuid'];\r\n        createDeviceForSingleSymbol?: boolean;\r\n    })",
+			'returnType': 'Promise<Idmt_BriefProjectItem | undefined>',
 			'description': '使用工程文件导入工程',
 			'snippet': 'importProjectByProjectFile(${1:projectFile}, ${2:fileType}, ${3:props}, ${4:saveTo}, ${5:librariesImportSetting})',
 		},

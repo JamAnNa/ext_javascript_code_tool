@@ -1,4 +1,4 @@
-edcode = {
+fullcode = {
 	'DMT_Board': [
 		{
 			'name': 'createBoard',

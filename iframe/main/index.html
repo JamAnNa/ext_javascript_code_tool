@@ -11,7 +11,7 @@
 			<div id="sidebar">
 				<ul>
 					<li><button id="run-btn">运行</button></li>
-					<!-- 后续可在此添加更多 <li><button>...</button></li> -->
+					<li><button id="ai-btn">AI辅助</button></li>
 				</ul>
 			</div>
 
@@ -29,7 +29,10 @@
 
 		<!-- EDA配置以及一些支持 -->
 		<script src="/iframe/script/User_config/message.js"></script>
+		<!-- 消息触发 -->
 		<script src="/iframe/script/eda_coder/allmethod.js"></script>
+		<!-- EDA补全 -->
+		<!--  <script src="/iframe/script/User_config/aicode.js"></script>	 -->
 
 		<script>
 			// 初始化 Ace 编辑器
@@ -149,6 +152,11 @@
 				} catch (error) {
 					console.error('❌ 执行出错:', error);
 				}
+			});
+
+			document.getElementById('ai-btn').addEventListener('click', () => {
+				activateMimoAI();
+				showToast('AI辅助已激活', { type: 'success' });
 			});
 		</script>
 	</body>
